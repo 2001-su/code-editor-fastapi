@@ -2,12 +2,11 @@ services:
   - type: web
     name: code-runner-backend
     env: docker
-    plan: free
+    repo: https://github.com/2001-su/code-editor
+    region: oregon
     branch: main
-    repo: https://github.com/2001-su/code-editor.git
-    dockerfilePath: backend/Dockerfile
-    buildFilter:
-      paths:
-        - backend/**
-    healthCheckPath: /
+    rootDir: backend
+    plan: free
+    dockerContext: .
+    dockerfilePath: Dockerfile
     autoDeploy: true
