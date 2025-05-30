@@ -5,7 +5,7 @@ services:
     repo: https://github.com/2001-su/code-editor
     region: oregon
     branch: main
-    rootDir: backend
+    rootDir: .
     plan: free
     dockerContext: .
     dockerfilePath: Dockerfile
