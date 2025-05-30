@@ -1,9 +1,13 @@
 services:
   - type: web
-    name: code-editor-backend
+    name: backend
     env: docker
     plan: free
-    dockerfilePath: ./backend/Dockerfile
+    dockerfilePath: backend/Dockerfile
+    buildFilter:
+      paths:
+        - backend/**
+    rootDir: backend
     autoDeploy: true
     healthCheckPath: /docs
 
