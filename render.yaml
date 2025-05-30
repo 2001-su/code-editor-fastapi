@@ -1,12 +1,31 @@
+# render.yaml
 services:
   - type: web
-    name: code-runner-backend
+    name: skoolofcode-backend
     env: docker
-    repo: https://github.com/2001-su/code-editor
-    region: oregon
-    branch: main
-    rootDir: .
     plan: free
-    dockerContext: .
-    dockerfilePath: Dockerfile
+    region: oregon
+    dockerfilePath: backend/Dockerfile
+    buildFilter:
+      paths:
+        - backend/**
     autoDeploy: true
+    envVars:
+      - key: PORT
+        value: 8000
+
+  - type: web
+    name: skoolofcode-frontend
+    env: static
+    plan: free
+    region: oregon
+    buildCommand: cd frontend && npm install && npm run build
+    staticPublishPath: frontend/build
+    buildFilter:
+      paths:
+        - frontend/**
+    autoDeploy: true
+    envVars:
+      - key: REACT_APP_API_URL
+        value: https://skoolofcode-backend.onrender.com
+
